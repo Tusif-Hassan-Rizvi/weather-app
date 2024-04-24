@@ -1,36 +1,70 @@
 import React from "react";
 
-function WeatherCard() {
+interface WeatherInfo {
+  cityName: string;
+  temprature: number;
+  tempratureFeel: number;
+  humidity: number;
+  wind: number;
+  visibility: number;
+  cloud: number;
+}
+
+interface WeatherCardProps {
+  locationdata: WeatherInfo;
+}
+
+const WeatherCard: React.FC<WeatherCardProps> = ({ locationdata }) => {
+  const {
+    cityName,
+    temprature,
+    tempratureFeel,
+    humidity,
+    wind,
+    visibility,
+    cloud,
+  } = locationdata;
   return (
     <>
       <div className="weather-card">
         <div className="top-header">
-          <span className="city-name card-info">Grugram</span>
-          <span className="currunt-time card-info">9:00</span>
-          <span className="temprature card-info">
-            32<sup>.c</sup>
+          <span className="city-name poppins-bold header-label">{cityName}</span>
+          <span className="temprature poppins-bold header-label">
+            {temprature}
+            <sup>.c</sup>
           </span>
         </div>
 
         <div className="weather-report">
           <div className="report-box">
-            <span className="report-label">Humidity</span>
-            <span className="humidity card-info">17%</span>
+            <span className="report-label poppins-semibold">Temprature Feel</span>
+            <span className="humidity card-info poppins-extrabold ">
+              {tempratureFeel}
+              <sup>.c</sup>
+            </span>
+          </div>
+          <div className="report-box">
+            <span className="report-label poppins-semibold">Humidity</span>
+            <span className="humidity card-info poppins-extrabold ">{humidity}%</span>
           </div>
 
           <div className="report-box">
-            <span className="report-label">Wind</span>
-            <span className="wind card-info">5 Km/hr</span>
+            <span className="report-label poppins-semibold">Wind</span>
+            <span className="wind card-info poppins-extrabold ">{wind} Km/hr</span>
           </div>
 
           <div className="report-box">
-            <span className="report-label">Air Quilty</span>
-            <span className="Air-quality card-info">168</span>
+            <span className="report-label poppins-semibold">Visibility</span>
+            <span className="Air-quality card-info poppins-extrabold ">{visibility}</span>
+          </div>
+          <div className="report-box">
+            <span className="report-label poppins-semibold">Cloud</span>
+            <span className="Air-quality card-info poppins-extrabold ">{cloud}%</span>
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default WeatherCard;
